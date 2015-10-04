@@ -176,8 +176,8 @@ function AposBot() {
         var xdis = x1 - x2;
         var ydis = y1 - y2;
         // Get abs quickly
-        xdis = xdis < 1 ? xdis * -1 : xdis;
-        ydis = ydis < 1 ? ydis * -1 : ydis;
+        xdis = xdis < 0 ? xdis * -1 : xdis;
+        ydis = ydis < 0 ? ydis * -1 : ydis;
 
         var distance = xdis + ydis;
 

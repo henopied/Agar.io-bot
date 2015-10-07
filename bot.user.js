@@ -359,27 +359,25 @@ function AposBot() {
         for (var i = 0; i < mergeList.length; i++) {
             for (var z = 0; z < mergeList.length; z++) {
                 if (z != i && that.isMerging(mergeList[i], mergeList[z])) { //z != i && 
-                        //found cells that appear to be merging - if they constitute a threat add them to the theatlist
-                        
-                        //clone us a new cell
-                        var newThreat = {};
-                        var prop;
-                        
-                        for (prop in mergeList[i]) {
-                            newThreat[prop] = mergeList[i][prop];
-                        }
-                        
-                        //average distance and sum the size
-                        newThreat.x = (mergeList[i].x + mergeList[z].x)/2;
-                        newThreat.y = (mergeList[i].y + mergeList[z].y)/2;
-                        newThreat.size = (mergeList[i].size + mergeList[z].size);
-                        newThreat.nopredict = true;
+                    //found cells that appear to be merging - if they constitute a threat add them to the theatlist
+                    //clone us a new cell
+                    var newThreat = {};
+                    newThreat = mergeList[i];
+                    
+                    //average distance and sum the size
+                    newThreat.x = (mergeList[i].x + mergeList[z].x)/2;
+                    newThreat.y = (mergeList[i].y + mergeList[z].y)/2;
+                    newThreat.size = (mergeList[i].size + mergeList[z].size);
+                    newThreat.nopredict = true;
+                    if(threatList.indexOf(newThreat) !== -1){
                         //check its a threat
                         if (that.isThreat(blob, newThreat)) {
                              //IT'S DANGER!
                             threatList.push(newThreat);
                         }   
-                                          
+                    } else {
+                        continue;
+                    }        
                 }
             }
         }
